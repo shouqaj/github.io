@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shoug Aljedani — Data Analyst Portfolio</title>
+<meta name="description" content="Data analyst portfolio: Python, SQL, Tableau, Power BI, and machine learning case studies." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;line-height:1.55;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;cursor:pointer;color:inherit}
+
+:root{
+  --paper:#f5f1e8;
+  --paper-2:#ece5d4;
+  --paper-3:#e4dcc6;
+  --ink:#1a1816;
+  --ink-2:#3a342e;
+  --muted:#6b6358;
+  --muted-2:#8a8175;
+  --rule:#cdc4b0;
+  --accent:#c24914;
+  --accent-2:#8a3209;
+  --display:'IBM Plex Serif',ui-serif,Georgia,serif;
+  --body:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --max:1240px;
+  --gutter:clamp(20px,4vw,56px);
+}
+
+body{
+  font-family:var(--body);color:var(--ink);background:var(--paper);
+  font-weight:400;font-size:16.5px;
+  position:relative;overflow-x:hidden;
+}
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  opacity:.3;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+main,header,footer,section{position:relative;z-index:2}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.mono{font-family:var(--mono);font-size:0.78em;letter-spacing:0.04em;text-transform:uppercase}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:14px var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-0.01em}
+.brand .dot{color:var(--accent)}
+.nav ul{list-style:none;display:flex;gap:28px}
+.nav ul a{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-2);transition:color .2s;font-weight:500;position:relative;padding:6px 0}
+.nav ul a:hover{color:var(--accent)}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.nav ul a:hover::after{transform:scaleX(1)}
+@media (max-width:720px){.nav ul{display:none}}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+section{padding:clamp(70px,10vh,110px) 0}
+
+/* HERO */
+.hero{padding:clamp(80px,14vh,150px) 0 clamp(70px,10vh,110px);border-bottom:1px solid var(--rule);position:relative}
+.hero-title{font-family:var(--display);font-weight:500;font-size:clamp(54px,11vw,150px);letter-spacing:-0.035em;line-height:0.92;margin-bottom:36px}
+.hero-title em{font-style:italic;font-weight:500;color:var(--accent)}
+.hero-tag{font-family:var(--display);font-size:clamp(20px,2.2vw,26px);font-weight:400;font-style:italic;line-height:1.4;color:var(--ink-2);max-width:680px}
+.hero-tag b{font-style:normal;font-weight:500;color:var(--ink)}
+.hero-bars{position:absolute;right:var(--gutter);bottom:32px;pointer-events:none;opacity:.6}
+@media (max-width:900px){.hero-bars{display:none}}
+
+/* TOOLKIT */
+.toolkit-wrap{padding-top:clamp(70px,10vh,110px);padding-bottom:clamp(70px,10vh,110px)}
+.minor-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.minor-head h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,2.6vw,32px);letter-spacing:-0.01em;line-height:1.1}
+.toolkit{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.tool-col{background:var(--paper);padding:26px 22px;display:flex;flex-direction:column;gap:14px}
+.tool-col h4{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:500;padding-bottom:12px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between}
+.tool-col h4 span{color:var(--muted-2)}
+.tool-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tool-col li{font-family:var(--display);font-size:17px;font-weight:400;letter-spacing:-0.005em;color:var(--ink)}
+.tool-col li::before{content:"·";color:var(--accent);margin-right:8px;font-weight:600}
+@media (max-width:900px){.toolkit{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.toolkit{grid-template-columns:1fr}}
+
+/* PROJECTS */
+.projects-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.projects-head h2{font-family:var(--display);font-weight:500;font-size:clamp(36px,5vw,56px);letter-spacing:-0.025em;line-height:1}
+.projects-head .eyebrow{align-self:flex-end}
+
+.project{display:grid;grid-template-columns:120px 1fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--rule);position:relative}
+.project:last-child{border-bottom:none}
+.project-num{font-family:var(--display);font-weight:500;font-size:clamp(56px,9vw,110px);line-height:0.85;color:var(--accent);letter-spacing:-0.04em;position:sticky;top:100px;align-self:start}
+.project-num small{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.project-body{display:flex;flex-direction:column;gap:24px;min-width:0}
+.project-head{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.project-title{font-family:var(--display);font-weight:500;font-size:clamp(32px,4vw,46px);letter-spacing:-0.02em;line-height:1.05}
+.project-title em{font-style:italic;color:var(--accent);font-weight:500}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.tag{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--ink);border-radius:999px;color:var(--ink)}
+.tag.accent{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.project-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px}
+.project-text{display:flex;flex-direction:column;gap:24px;min-width:0}
+.project-block h4{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.project-block p{font-size:15.5px;line-height:1.62;color:var(--ink-2)}
+.project-block p b{color:var(--ink);font-weight:600}
+.inline-code{font-family:var(--mono);font-size:13px;background:var(--paper-2);padding:1px 5px;border-radius:3px}
+
+.code-block{background:#1a1816;color:#e8e2d2;padding:18px 20px;border-radius:4px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre}
+.code-block .kw{color:#c24914}
+.code-block .fn{color:#e8b34a}
+.code-block .cm{color:#7d756a;font-style:italic}
+
+.project-viz{background:var(--paper-2);border:1px solid var(--rule);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;position:relative;min-height:280px}
+.viz-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.viz-svg{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.viz-svg svg{width:100%;height:auto;max-height:200px}
+.viz-cap{font-family:var(--display);font-style:italic;font-size:13.5px;line-height:1.5;color:var(--ink-2);font-weight:400;border-top:1px solid var(--rule);padding-top:12px}
+.project-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-top:4px;padding-bottom:2px;border-bottom:1px solid var(--accent);align-self:flex-start;transition:gap .2s}
+.project-link:hover{gap:14px}
+.project-link svg{width:12px;height:12px}
+
+@media (max-width:900px){
+  .project{grid-template-columns:1fr;gap:24px}
+  .project-num{position:static;font-size:64px}
+  .project-head{grid-template-columns:1fr;gap:18px;align-items:start}
+  .project-tags{justify-content:flex-start}
+  .project-grid{grid-template-columns:1fr;gap:24px}
+}
+
+/* CONTACT */
+.contact{border-top:1px solid var(--rule);padding:clamp(80px,14vh,150px) 0;background:var(--ink);color:var(--paper);margin-top:40px}
+.contact .wrap{position:relative}
+.contact-eye{color:rgba(245,241,232,.5);margin-bottom:22px;display:block}
+.contact-title{font-family:var(--display);font-weight:500;font-size:clamp(48px,8vw,110px);letter-spacing:-0.03em;line-height:0.94;margin-bottom:48px}
+.contact-title em{font-style:italic;color:var(--accent);font-weight:500}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;border-top:1px solid rgba(245,241,232,.2);padding-top:32px}
+.contact-block h6{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,241,232,.5);margin-bottom:10px}
+.contact-block a, .contact-block p{font-family:var(--display);font-size:20px;font-weight:400;letter-spacing:-0.01em;line-height:1.3;transition:color .2s;word-break:break-word}
+.contact-block a:hover{color:var(--accent)}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid rgba(245,241,232,.2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(245,241,232,.5)}
+@media (max-width:720px){.contact-grid{grid-template-columns:1fr;gap:24px}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s ease, transform .9s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Shoug Aljedani<span class="dot">.</span></a>
+    <ul>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-title">Data,<br>read <em>carefully.</em></h1>
+    <p class="hero-tag">
+      I'm <b>Shoug Aljedani</b> — a data analyst who turns messy tables and noisy logs into clear answers. I work in Python, SQL, Tableau, and Power BI.
+    </p>
+  </div>
+  <svg class="hero-bars" width="180" height="60" viewBox="0 0 180 60" fill="none" aria-hidden="true">
+    <rect x="0"   y="40" width="10" height="20" fill="#1a1816"/>
+    <rect x="14"  y="28" width="10" height="32" fill="#1a1816"/>
+    <rect x="28"  y="34" width="10" height="26" fill="#1a1816"/>
+    <rect x="42"  y="18" width="10" height="42" fill="#c24914"/>
+    <rect x="56"  y="22" width="10" height="38" fill="#1a1816"/>
+    <rect x="70"  y="12" width="10" height="48" fill="#1a1816"/>
+    <rect x="84"  y="6"  width="10" height="54" fill="#c24914"/>
+    <rect x="98"  y="14" width="10" height="46" fill="#1a1816"/>
+    <rect x="112" y="20" width="10" height="40" fill="#1a1816"/>
+    <rect x="126" y="30" width="10" height="30" fill="#1a1816"/>
+    <rect x="140" y="36" width="10" height="24" fill="#1a1816"/>
+    <rect x="154" y="44" width="10" height="16" fill="#1a1816"/>
+    <rect x="168" y="48" width="10" height="12" fill="#1a1816"/>
+  </svg>
+</section>
+
+<section id="toolkit" class="toolkit-wrap">
+  <div class="wrap">
+    <div class="minor-head reveal">
+      <h2>Toolkit</h2>
+      <span class="eyebrow">Languages · Analysis · Visual</span>
+    </div>
+    <div class="toolkit reveal">
+      <div class="tool-col">
+        <h4>Languages <span>01</span></h4>
+        <ul>
+          <li>Python</li>
+          <li>SQL <span class="mono" style="color:var(--muted);font-size:10px">(Postgres)</span></li>
+        </ul>
+      </div>
+      <div class="tool-col">
+        <h4>Analysis <span>02</span></h4>
+        <ul>
+          <li>pandas</li>
+          <li>NumPy</li>
+          <li>scikit-learn</li>
+          <li>SciPy</li>
+        </ul>
+      </div>
+      <div class="tool-col">
+        <h4>Visual <span>03</span></h4>
+        <ul>
+          <li>Tableau</li>
+          <li>Power BI</li>
+          <li>Matplotlib</li>
+          <li>Seaborn</li>
+        </ul>
+      </div>
+      <div class="tool-col">
+        <h4>Also <span>04</span></h4>
+        <ul>
+          <li>Excel</li>
+          <li>NLTK</li>
+          <li>Jupyter</li>
+          <li>Git</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="projects-head reveal">
+      <h2>Projects</h2>
+      <span class="eyebrow">Five selected case studies</span>
+    </div>
+
+    <article class="project reveal">
+      <div class="project-num">01<small>Python · pandas</small></div>
+      <div class="project-body">
+        <header class="project-head">
+          <h3 class="project-title">US Bikeshare <em>Explorer</em></h3>
+          <div class="project-tags">
+            <span class="tag accent">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+          </div>
+        </header>
+        <div class="project-grid">
+          <div class="project-text">
+            <div class="project-block">
+              <h4>Problem</h4>
+              <p>Bikeshare data for Chicago, New York, and Washington lived in three separate CSVs and answered no question on its own. The brief: build an interactive tool that lets a non-technical user pick a city, a month, and a day, and get back the patterns hidden in millions of rides.</p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>I built a Python program around <b>pandas</b>. It parses each city's CSV, converts <span class="inline-code">Start Time</span> into datetime, and engineers month, weekday, and hour columns up front so every later query is one filter away. The user is walked through three prompts; the program then computes most-common travel times, top stations and station pairs, total and mean trip duration, and rider-type breakdowns. A paged-display loop lets the user inspect raw rows five at a time.</p>
+            </div>
+            <div class="project-block">
+              <h4>Code structure</h4>
+<div class="code-block"><span class="kw">def</span> <span class="fn">get_filters</span>():       <span class="cm"># prompts user for city, month, day</span>
+<span class="kw">def</span> <span class="fn">load_data</span>(city, month, day):  <span class="cm"># read CSV, build time features, apply filters</span>
+<span class="kw">def</span> <span class="fn">time_stats</span>(df):        <span class="cm"># most common month / day / hour</span>
+<span class="kw">def</span> <span class="fn">station_stats</span>(df):     <span class="cm"># top start, end, and trip pairs</span>
+<span class="kw">def</span> <span class="fn">trip_duration_stats</span>(df): <span class="cm"># total + mean travel time</span>
+<span class="kw">def</span> <span class="fn">user_stats</span>(df):        <span class="cm"># user type / gender / birth-year breakdown</span>
+<span class="kw">def</span> <span class="fn">display_data</span>(df):      <span class="cm"># paged raw-row preview, 5 rows at a time</span></div>
+            </div>
+            <div class="project-block">
+              <h4>Insight</h4>
+              <p>Usage shape varies sharply by city. The two larger systems show clean commuter peaks at 8am and 5pm on weekdays; Washington's hour distribution is flatter and weekend-heavy, consistent with tourist use. The most common station pairs cluster around financial districts on weekdays and around parks on weekends — the same bikes serve two different cities depending on the day.</p>
+            </div>
+          </div>
+          <aside class="project-viz">
+            <div class="viz-label"><span>Fig. 01</span><span>Rides by hour</span></div>
+            <div class="viz-svg">
+              <svg viewBox="0 0 260 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="20" y1="140" x2="250" y2="140" stroke="#cdc4b0"/>
+                <line x1="20" y1="20" x2="20" y2="140" stroke="#cdc4b0"/>
+                <g fill="#1a1816">
+                  <rect x="22" y="130" width="7" height="10"/>
+                  <rect x="32" y="132" width="7" height="8"/>
+                  <rect x="42" y="134" width="7" height="6"/>
+                  <rect x="52" y="136" width="7" height="4"/>
+                  <rect x="62" y="128" width="7" height="12"/>
+                  <rect x="72" y="110" width="7" height="30"/>
+                  <rect x="82" y="80"  width="7" height="60"/>
+                </g>
+                <rect x="92"  y="40"  width="7" height="100" fill="#c24914"/>
+                <rect x="102" y="55"  width="7" height="85" fill="#c24914"/>
+                <g fill="#1a1816">
+                  <rect x="112" y="85"  width="7" height="55"/>
+                  <rect x="122" y="80"  width="7" height="60"/>
+                  <rect x="132" y="75"  width="7" height="65"/>
+                  <rect x="142" y="70"  width="7" height="70"/>
+                  <rect x="152" y="65"  width="7" height="75"/>
+                </g>
+                <rect x="162" y="35"  width="7" height="105" fill="#c24914"/>
+                <rect x="172" y="50"  width="7" height="90"  fill="#c24914"/>
+                <g fill="#1a1816">
+                  <rect x="182" y="78"  width="7" height="62"/>
+                  <rect x="192" y="92"  width="7" height="48"/>
+                  <rect x="202" y="105" width="7" height="35"/>
+                  <rect x="212" y="115" width="7" height="25"/>
+                  <rect x="222" y="124" width="7" height="16"/>
+                  <rect x="232" y="130" width="7" height="10"/>
+                  <rect x="242" y="134" width="7" height="6"/>
+                </g>
+                <text x="22" y="155" font-family="IBM Plex Mono" font-size="8" fill="#6b6358">00</text>
+                <text x="122" y="155" font-family="IBM Plex Mono" font-size="8" fill="#6b6358">12</text>
+                <text x="232" y="155" font-family="IBM Plex Mono" font-size="8" fill="#6b6358">23</text>
+              </svg>
+            </div>
+            <p class="viz-cap">Two clear commuter peaks — 8am and 5pm — dominate Chicago and NY. Washington's curve is visibly flatter.</p>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-num">02<small>SQL · Postgres</small></div>
+      <div class="project-body">
+        <header class="project-head">
+          <h3 class="project-title">DVD Rental <em>Database</em> Investigation</h3>
+          <div class="project-tags">
+            <span class="tag accent">SQL</span>
+            <span class="tag">Window Functions</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Reporting</span>
+          </div>
+        </header>
+        <div class="project-grid">
+          <div class="project-text">
+            <div class="project-block">
+              <h4>Problem</h4>
+              <p>Two business questions from a fictional video-rental chain: <b>what are families actually renting</b>, and <b>how do the two stores compare month-on-month?</b> The data lived across six normalised tables — rentals, inventory, films, categories, staff, stores.</p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>I wrote a series of PostgreSQL queries joining the six tables and filtering to six family-friendly categories (Animation, Children, Classics, Comedy, Family, Music). A <b>NTILE(4) window function</b> bucketed each film's rental duration into quartiles, then a second outer query rolled the per-film result up into a category-by-quartile count table. A separate query used <span class="inline-code">DATE_PART</span> to compare per-store rentals across months in summer 2005.</p>
+            </div>
+            <div class="project-block">
+              <h4>Insight</h4>
+              <p>Animation led family rentals at <b>1,166 films</b>; Music was the lowest at 830. Family and Animation both took the longest rental durations (Q4) — these are the films households keep for a week. Between the two stores, the difference in any given month was tiny (≈25–98 rentals), but both stores dropped roughly 900 rentals from July to August — a seasonal signal worth investigating, not a store-quality difference.</p>
+            </div>
+          </div>
+          <aside class="project-viz">
+            <div class="viz-label"><span>Fig. 02</span><span>Rentals by category</span></div>
+            <div class="viz-svg">
+              <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="80" y1="10" x2="80" y2="170" stroke="#cdc4b0"/>
+                <g font-family="IBM Plex Mono" font-size="9" fill="#3a342e">
+                  <text x="76" y="25" text-anchor="end">Animation</text>
+                  <rect x="82" y="17" width="160" height="14" fill="#c24914"/>
+                  <text x="246" y="27" font-size="8" fill="#6b6358">1,166</text>
+                  <text x="76" y="50" text-anchor="end">Family</text>
+                  <rect x="82" y="42" width="150" height="14" fill="#1a1816"/>
+                  <text x="236" y="52" font-size="8" fill="#6b6358">1,096</text>
+                  <text x="76" y="75" text-anchor="end">Comedy</text>
+                  <rect x="82" y="67" width="129" height="14" fill="#1a1816"/>
+                  <text x="215" y="77" font-size="8" fill="#6b6358">941</text>
+                  <text x="76" y="100" text-anchor="end">Children</text>
+                  <rect x="82" y="92" width="130" height="14" fill="#1a1816"/>
+                  <text x="216" y="102" font-size="8" fill="#6b6358">945</text>
+                  <text x="76" y="125" text-anchor="end">Classics</text>
+                  <rect x="82" y="117" width="129" height="14" fill="#1a1816"/>
+                  <text x="215" y="127" font-size="8" fill="#6b6358">939</text>
+                  <text x="76" y="150" text-anchor="end">Music</text>
+                  <rect x="82" y="142" width="114" height="14" fill="#1a1816"/>
+                  <text x="200" y="152" font-size="8" fill="#6b6358">830</text>
+                </g>
+              </svg>
+            </div>
+            <p class="viz-cap">Animation tops family rentals by ~70 over its nearest neighbour. The spread between top and bottom is smaller than it looks — 28%.</p>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-num">03<small>Tableau</small></div>
+      <div class="project-body">
+        <header class="project-head">
+          <h3 class="project-title">US Flight Delays, <em>Mapped</em></h3>
+          <div class="project-tags">
+            <span class="tag accent">Tableau</span>
+            <span class="tag">Geospatial</span>
+            <span class="tag">Dashboarding</span>
+            <span class="tag">Accessibility</span>
+          </div>
+        </header>
+        <div class="project-grid">
+          <div class="project-text">
+            <div class="project-block">
+              <h4>Problem</h4>
+              <p>One year of US domestic flight data (2015) — thousands of routes, hundreds of airports, every airline. The viewer wants to know, in under a minute, <b>where delays cluster, which carriers cancel the most, and when</b>.</p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>I built a three-view Tableau dashboard. The first is a US map where each state is a circle: <b>size encodes departure delay, colour encodes arrival delay</b>, so the eye gets both dimensions at once. The second is a horizontal bar chart of arrival vs. departure delay per airline. The third splits cancellations into a pie by carrier and a month-by-month bar — the same data, two granularities. The palette is drawn from a colour-blind-safe ramp so the encoding survives a deuteranopic viewer.</p>
+            </div>
+            <div class="project-block">
+              <h4>Insight</h4>
+              <p>Three carriers — <b>Southwest, Atlantic Southeast, and American Eagle</b> — account for the bulk of cancellations. Cancellations are sharply seasonal: <b>February alone had 1,058 cancelled flights</b>, more than any summer month. Departure and arrival delays correlate strongly at the state level but diverge for a handful of southern airports where ground delays don't translate into late arrivals.</p>
+            </div>
+            <a class="project-link" href="https://public.tableau.com/app/profile/shoug5080" target="_blank" rel="noopener">
+              View on Tableau Public
+              <svg viewBox="0 0 12 12" fill="none"><path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </a>
+          </div>
+          <aside class="project-viz">
+            <div class="viz-label"><span>Fig. 03</span><span>Cancellations · monthly</span></div>
+            <div class="viz-svg">
+              <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="20" y1="160" x2="250" y2="160" stroke="#cdc4b0"/>
+                <line x1="20" y1="20"  x2="20"  y2="160" stroke="#cdc4b0"/>
+                <g font-family="IBM Plex Mono" font-size="8" fill="#6b6358">
+                  <text x="20" y="172">J</text><text x="40" y="172">F</text><text x="60" y="172">M</text>
+                  <text x="80" y="172">A</text><text x="100" y="172">M</text><text x="120" y="172">J</text>
+                  <text x="140" y="172">J</text><text x="160" y="172">A</text><text x="180" y="172">S</text>
+                  <text x="200" y="172">O</text><text x="220" y="172">N</text><text x="240" y="172">D</text>
+                </g>
+                <g>
+                  <rect x="22" y="60"  width="14" height="100" fill="#1a1816"/>
+                  <rect x="42" y="30"  width="14" height="130" fill="#c24914"/>
+                  <rect x="62" y="78"  width="14" height="82"  fill="#1a1816"/>
+                  <rect x="82" y="110" width="14" height="50"  fill="#1a1816"/>
+                  <rect x="102" y="120" width="14" height="40" fill="#1a1816"/>
+                  <rect x="122" y="100" width="14" height="60" fill="#1a1816"/>
+                  <rect x="142" y="92"  width="14" height="68" fill="#1a1816"/>
+                  <rect x="162" y="115" width="14" height="45" fill="#1a1816"/>
+                  <rect x="182" y="125" width="14" height="35" fill="#1a1816"/>
+                  <rect x="202" y="108" width="14" height="52" fill="#1a1816"/>
+                  <rect x="222" y="85"  width="14" height="75" fill="#1a1816"/>
+                  <rect x="242" y="70"  width="14" height="90" fill="#1a1816"/>
+                </g>
+                <text x="49" y="22" font-family="IBM Plex Mono" font-size="9" fill="#c24914" text-anchor="middle">1,058</text>
+              </svg>
+            </div>
+            <p class="viz-cap">February stands an entire winter taller than its peers. December and November are the next cluster — weather, not capacity.</p>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-num">04<small>Power BI</small></div>
+      <div class="project-body">
+        <header class="project-head">
+          <h3 class="project-title">Imports &amp; Exports <em>Dashboard</em></h3>
+          <div class="project-tags">
+            <span class="tag accent">Power BI</span>
+            <span class="tag">Bilingual</span>
+            <span class="tag">Executive Reporting</span>
+          </div>
+        </header>
+        <div class="project-grid">
+          <div class="project-text">
+            <div class="project-block">
+              <h4>Problem</h4>
+              <p>A trade business needed one screen showing where their imports come from, what they sell, how revenue moves year-on-year, and how much of each invoice is still outstanding. The deck had to read natively in Arabic and be usable by executives who don't write SQL.</p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>I built the dashboard in <b>Power BI</b> with cross-filtering wired between every visual: a country pie chart, a bar of top countries by net revenue, an annual trend line, and a 100%-stacked bar splitting paid vs. outstanding amounts by category. A detail table breaks revenue down by product type. The whole deck is right-to-left, Arabic-typeset, with sliceable category buttons across the top.</p>
+            </div>
+            <div class="project-block">
+              <h4>Insight</h4>
+              <p>Total revenue across the period was <b>~SAR 320M</b> spread over <b>nine export destinations</b>. China led on both volume and revenue. <b>Home appliances had the cleanest payment cycle</b> — only 33% outstanding versus 36% for office supplies. Annual revenue peaked in 2017 and dropped sharply in 2018; that one fact is the single most important thing on the dashboard, and it's where the eye lands first by design.</p>
+            </div>
+          </div>
+          <aside class="project-viz">
+            <div class="viz-label"><span>Fig. 04</span><span>Paid vs. outstanding</span></div>
+            <div class="viz-svg">
+              <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g font-family="IBM Plex Mono" font-size="9" fill="#6b6358">
+                  <text x="50"  y="172" text-anchor="middle">Home</text>
+                  <text x="130" y="172" text-anchor="middle">Electronics</text>
+                  <text x="210" y="172" text-anchor="middle">Office</text>
+                </g>
+                <g>
+                  <rect x="20" y="67"  width="60" height="93" fill="#1a1816"/>
+                  <rect x="20" y="20"  width="60" height="47" fill="#c24914"/>
+                  <text x="50" y="120" font-family="IBM Plex Mono" font-size="11" fill="#f5f1e8" text-anchor="middle">66.6%</text>
+                  <text x="50" y="48"  font-family="IBM Plex Mono" font-size="10" fill="#f5f1e8" text-anchor="middle">33.4%</text>
+                  <rect x="100" y="69" width="60" height="91" fill="#1a1816"/>
+                  <rect x="100" y="20" width="60" height="49" fill="#c24914"/>
+                  <text x="130" y="120" font-family="IBM Plex Mono" font-size="11" fill="#f5f1e8" text-anchor="middle">65.0%</text>
+                  <text x="130" y="50"  font-family="IBM Plex Mono" font-size="10" fill="#f5f1e8" text-anchor="middle">35.0%</text>
+                  <rect x="180" y="71" width="60" height="89" fill="#1a1816"/>
+                  <rect x="180" y="20" width="60" height="51" fill="#c24914"/>
+                  <text x="210" y="120" font-family="IBM Plex Mono" font-size="11" fill="#f5f1e8" text-anchor="middle">63.8%</text>
+                  <text x="210" y="50"  font-family="IBM Plex Mono" font-size="10" fill="#f5f1e8" text-anchor="middle">36.2%</text>
+                </g>
+              </svg>
+            </div>
+            <p class="viz-cap">Home appliances pay back fastest; office supplies sit on the longest tail of outstanding receivables. A 3-point gap that means real cash flow.</p>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="project-num">05<small>scikit-learn</small></div>
+      <div class="project-body">
+        <header class="project-head">
+          <h3 class="project-title">Predicting Sales from <em>Ad Spend</em></h3>
+          <div class="project-tags">
+            <span class="tag accent">Machine Learning</span>
+            <span class="tag">Linear Regression</span>
+            <span class="tag">scikit-learn</span>
+          </div>
+        </header>
+        <div class="project-grid">
+          <div class="project-text">
+            <div class="project-block">
+              <h4>Problem</h4>
+              <p>A 200-observation dataset of TV, radio, and newspaper ad budgets paired with weekly sales. The question was simple but the kind that decides budgets: <b>which channel actually moves the needle per dollar?</b></p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>I split the data 75/25 with <span class="inline-code">train_test_split</span>, fit a <b>multiple linear regression</b> on the three ad channels, and evaluated on the held-out set with RMSE. I read the coefficients in their original units, not standardised — because in this case the units are dollars and the audience cares about them.</p>
+            </div>
+            <div class="project-block">
+              <h4>Insight</h4>
+              <p>The model fit cleanly (RMSE ≈ <b>1.40</b> on sales values ranging roughly 3–25). The coefficient on <b>radio (0.179)</b> was an order of magnitude larger than TV (0.003) and roughly 4× newspaper (0.047). Read plainly: an extra dollar of radio budget is associated with much more incremental sales than the same dollar elsewhere — at least within the range observed. Worth A/B-testing in a real campaign before reallocating.</p>
+            </div>
+          </div>
+          <aside class="project-viz">
+            <div class="viz-label"><span>Fig. 05</span><span>Predicted vs. actual</span></div>
+            <div class="viz-svg">
+              <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="20" y1="160" x2="250" y2="160" stroke="#cdc4b0"/>
+                <line x1="20" y1="20" x2="20" y2="160" stroke="#cdc4b0"/>
+                <line x1="30" y1="155" x2="240" y2="30" stroke="#c24914" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <g fill="#1a1816">
+                  <circle cx="40"  cy="148" r="2.5"/>
+                  <circle cx="55"  cy="140" r="2.5"/>
+                  <circle cx="62"  cy="138" r="2.5"/>
+                  <circle cx="78"  cy="128" r="2.5"/>
+                  <circle cx="85"  cy="118" r="2.5"/>
+                  <circle cx="92"  cy="115" r="2.5"/>
+                  <circle cx="100" cy="108" r="2.5"/>
+                  <circle cx="108" cy="100" r="2.5"/>
+                  <circle cx="115" cy="98"  r="2.5"/>
+                  <circle cx="125" cy="92"  r="2.5"/>
+                  <circle cx="132" cy="84"  r="2.5"/>
+                  <circle cx="138" cy="80"  r="2.5"/>
+                  <circle cx="148" cy="74"  r="2.5"/>
+                  <circle cx="155" cy="72"  r="2.5"/>
+                  <circle cx="165" cy="64"  r="2.5"/>
+                  <circle cx="172" cy="58"  r="2.5"/>
+                  <circle cx="180" cy="56"  r="2.5"/>
+                  <circle cx="192" cy="48"  r="2.5"/>
+                  <circle cx="200" cy="44"  r="2.5"/>
+                  <circle cx="210" cy="40"  r="2.5"/>
+                  <circle cx="220" cy="34"  r="2.5"/>
+                  <circle cx="225" cy="42"  r="2.5"/>
+                  <circle cx="148" cy="92"  r="2.5"/>
+                  <circle cx="100" cy="120" r="2.5"/>
+                  <circle cx="65"  cy="125" r="2.5"/>
+                </g>
+                <text x="20" y="14" font-family="IBM Plex Mono" font-size="8" fill="#6b6358">predicted</text>
+                <text x="250" y="172" font-family="IBM Plex Mono" font-size="8" fill="#6b6358" text-anchor="end">actual</text>
+              </svg>
+            </div>
+            <p class="viz-cap">Predictions sit tight against the y = x line. Errors are largest at the extremes — a familiar pattern with linear models.</p>
+          </aside>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow contact-eye">Get in touch</span>
+    <h2 class="contact-title">Let's <em>talk data.</em></h2>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h6>Email</h6>
+        <a href="mailto:shougabdullah1@outlook.com">shougabdullah1@outlook.com</a>
+      </div>
+      <div class="contact-block">
+        <h6>LinkedIn</h6>
+        <a href="https://www.linkedin.com/in/shoug-aljedani" target="_blank" rel="noopener">linkedin.com/in/shoug-aljedani</a>
+      </div>
+      <div class="contact-block">
+        <h6>Tableau Public</h6>
+        <a href="https://public.tableau.com/app/profile/shoug5080" target="_blank" rel="noopener">@shoug5080</a>
+      </div>
+    </div>
+    <div class="foot">
+      <span>© Shoug Aljedani</span>
+      <span>Jeddah</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
